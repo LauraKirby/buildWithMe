@@ -1,27 +1,44 @@
-$( document ).ready(function() {
-
+$(document).ready(function(){
 		// Get a reference to the canvas object
 		var canvas = document.getElementById('myCanvas');
+		
 		// Create an empty project and a view for the canvas:
 		paper.setup(canvas);
-		// Create a Paper.js Path to draw a line into it:
-		var linePath = new paper.Path();
-		// Give the stroke a color
-		linePath.strokeColor = 'aqua';
-		var start = new paper.Point(100, 100);
-		// Move to start and draw a line from there
-		linePath.moveTo(start);
-		// Note that the plus operator on Point objects does not work
-		// in JavaScript. Instead, we need to call the add() function:
-		linePath.lineTo(start.add([ 200, -50 ]));
+		
+		// Create rectangle 
+ 		var rect = new paper.Path.Rectangle(new paper.Point(0, 0),
+		new paper.Point(300, 300));
+		rect.fillColor = 'aqua'
+
+		// Create triangle 
+		var triangle = new paper.Path.RegularPolygon(new paper.Point(200, 70), 3, 50);
+		triangle.fillColor = 'pink';
+
+		// Create circle
+		var circlePathGreen = new paper.Path.Circle(new paper.Point(50, 30), 20);
+		circlePathGreen.fillColor = 'green'
+ 
+		var circlePathPurp = new paper.Path.Circle(new paper.Point(50, 75), 20);
+		circlePathPurp.fillColor = 'purple'
+
+		var circlePathOrange = new paper.Path.Circle(new paper.Point(50, 120), 20);
+		circlePathOrange.fillColor = 'orange'
 		
 
-		var rectangle = new paper.Rectangle(new paper.Point(50, 50), new paper.Point(150,100));
-		var recPath = new paper.Path.Rectangle(rectangle); 
-		recPath.fillColor = 'yellow'; 
-		//recPath.selected = true; 	
 
 		// Draw the view now:
 		paper.view.draw();
-
-});
+ 
+ 		// Create an instance of Tool for the mouse drage event
+		var tool = new paper.Tool();
+		//tool.activate(); this is already activated
+ 
+ 		// Create mouse drag 
+		tool.onMouseDrag = function(event){
+			var clickedItem = paper.project.hitTest(event.point)
+			if(clickedItem){
+				var circle = clickedItem.item;
+				circle.position = event.point;
+			}
+		}
+	});
