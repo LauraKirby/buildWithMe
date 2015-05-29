@@ -6,7 +6,7 @@ $(document).ready(function(){
 		// paper is a global variable of the class Paper 
 		paper.setup(canvas);
 		
-		//SHAPES - implement Path & shape class 
+		//SHAPES - implement Path & various shape classes 
 
 		// Create rectangle 
  		var rect = new paper.Path.Rectangle(new paper.Point(0, 0),300, 300);
@@ -16,17 +16,23 @@ $(document).ready(function(){
 		var triangle = new paper.Path.RegularPolygon(new paper.Point(254, 122), 3, 53);
 		triangle.fillColor = '#CCFFFF'; //light aqua
 
-		// Create grey rectangle 
-		var rectGrey = new paper.Path.Rectangle(new paper.Point(80, 60),50, 30);
-		rectGrey.fillColor = '#CCCCCC'
+		// Create purple rectangle 
+		var rectHead = new paper.Path.Rectangle(new paper.Point(80, 60),50, 30);
+		rectHead.fillColor = '#a200ff';
 
-		// Create pink pentagon
+		// Create purple pentagon
+		var pentagonHat = new paper.Path.RegularPolygon(new paper.Point(105, 63), 5, 25);
+		pentagonHat.fillColor = '#a200ff';
+
+		// Create orange pentagon
 		var pentagonLeftEye = new paper.Path.RegularPolygon(new paper.Point(95, 73), 5, 6);
-		pentagonLeftEye.fillColor = '#FF33CC'; //bright pink
+		pentagonLeftEye.fillColor = '#f47835'; 
 
 		// Create lime pentagon
 		var pentagonRightEye = new paper.Path.RegularPolygon(new paper.Point(115, 73), 5, 6);
 		pentagonRightEye.fillColor = 'lime';
+
+
 
 		//LAYER
 		// Create second Layer, first layer was created upon project creation
@@ -40,7 +46,7 @@ $(document).ready(function(){
 
 		//GROUP
 		// Create an instance of Group for the robot head. The entire group of images is dragable. Each item within the group is absolute. 
-		var multiImage = new paper.Group([rectGrey, pentagonRightEye, pentagonLeftEye]);
+		var multiImage = new paper.Group([rectHead, pentagonHat, pentagonRightEye, pentagonLeftEye]);
 		multiImage.name = "robotHead"; 
 
 		//DRAW VIEW 

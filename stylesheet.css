@@ -7,8 +7,13 @@
 }*/
 
 /*this will make canvas absolute, it think something needs to be changed in the html too*/
-/*html, body {
+html, body {
 	margin: 10; 
 	overflow: hidden;  
 	height: 100%; 
-}*/
+}
+
+canvas[resize]{
+	width: 100%;
+	height: 100%; 
+}
