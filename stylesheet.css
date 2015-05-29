@@ -5,3 +5,10 @@
 /*element.style {
 	background-color: aqua, 
 }*/
+
+/*this will make canvas absolute, it think something needs to be changed in the html too*/
+/*html, body {
+	margin: 10; 
+	overflow: hidden;  
+	height: 100%; 
+}*/
