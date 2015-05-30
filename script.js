@@ -7,13 +7,12 @@ $(document).ready(function(){
 		paper.setup(canvas);
 		
 		//SHAPES - implement Path & various shape classes 
-
 		// Create rectangle 
- 		var rect = new paper.Path.Rectangle(new paper.Point(0, 0),300, 300);
+ 		var rect = new paper.Path.Rectangle(new paper.Point(0, 0),600, 300);
 		rect.fillColor = '#66FFFF' //aqua
 
 		// Create triangle - 3 arguments: (center, numSides, radius)
-		var triangle = new paper.Path.RegularPolygon(new paper.Point(254, 122), 3, 53);
+		var triangle = new paper.Path.RegularPolygon(new paper.Point(520, 250), 3, 90);
 		triangle.fillColor = '#CCFFFF'; //light aqua
 
 		// Create purple rectangle 
@@ -24,9 +23,9 @@ $(document).ready(function(){
 		var pentagonHat = new paper.Path.RegularPolygon(new paper.Point(105, 63), 5, 25);
 		pentagonHat.fillColor = '#a200ff';
 
-		// Create orange pentagon
+		// Create red-orange pentagon
 		var pentagonLeftEye = new paper.Path.RegularPolygon(new paper.Point(95, 73), 5, 6);
-		pentagonLeftEye.fillColor = '#f47835'; 
+		pentagonLeftEye.fillColor = '#d41243'; 
 
 		// Create lime pentagon
 		var pentagonRightEye = new paper.Path.RegularPolygon(new paper.Point(115, 73), 5, 6);
@@ -38,11 +37,15 @@ $(document).ready(function(){
 		// Create second Layer, first layer was created upon project creation
 		// All items created after this layer will be on the second layer
 		var dragableLayer = new paper.Layer();
-		dragableLayer.name = "draggable";
+		dragableLayer.name = "dragable";
 
 		// Create image on second layer 
-		var circleOrange = new paper.Path.Circle(new paper.Point(50, 120), 20);
-		circleOrange.fillColor = 'orange'
+		var circleOrange = new paper.Path.Circle(new paper.Point(50, 200), 20);
+		circleOrange.fillColor = '#f47835'
+
+		// The orange circle was 'hard-coded.' I have created an addCircle function to reduce repeative code. 
+		// Implement addCircle() function to add cirle to current layer. Arguments: color, x-coord, y-coord, size
+		addCircle('yellow',50,100,20); 
 
 		//GROUP
 		// Create an instance of Group for the robot head. The entire group of images is dragable. Each item within the group is absolute. 
@@ -60,7 +63,7 @@ $(document).ready(function(){
  		// Create mouse drag 
 		tool.onMouseDrag = function(event){
 			var clickedItem = paper.project.hitTest(event.point).item; 
-			if(clickedItem.getLayer().name === "draggable"){
+			if(clickedItem.getLayer().name === "dragable"){
 				if (clickedItem._parent.name === "robotHead")
 				{
 					clickedItem._parent.position = event.point;
@@ -69,6 +72,17 @@ $(document).ready(function(){
 					clickedItem.position = event.point;
 				}
 			}
+		}
+
+		function addCircle(color, x, y, size){
+			var circleNew = new paper.Path.Circle(new paper.Point(x, y), size);
+			if (!color) {
+				color = "yellow"; 
+			}
+			circleNew.fillColor = color; 
+
+// ternary operator:
+		// circle = circleColor ? circleColor : "blue";
 		}
 
 	});
